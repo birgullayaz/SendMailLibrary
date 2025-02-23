@@ -1,0 +1,59 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model EmailModel
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Email Gönder</h3>
+                </div>
+                <div class="card-body">
+                    @if (TempData["Message"] != null)
+                    {
+                        <div class="alert alert-success">@TempData["Message"]</div>
+                    }
+
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-danger">@TempData["Error"]</div>
+                    }
+
+                    <form asp-action="SendEmail" method="post">
+                        <div class="mb-3">
+                            <label asp-for="ReceiverEmail" class="form-label">Alıcı Email:</label>
+                            <input asp-for="ReceiverEmail" class="form-control" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Topic" class="form-label">Topic:</label>
+                            <input asp-for="Topic" class="form-control" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Detail" class="form-label">Detail:</label>
+                            <textarea asp-for="Detail" class="form-control" rows="3" required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Subject" class="form-label">Konu:</label>
+                            <input asp-for="Subject" class="form-control" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Message" class="form-label">Mesaj:</label>
+                            <textarea asp-for="Message" class="form-control" rows="5" required></textarea>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Gönder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
